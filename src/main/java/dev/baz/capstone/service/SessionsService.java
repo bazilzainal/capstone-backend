@@ -22,4 +22,8 @@ public class SessionsService {
     public List<SessionsEntity> getSessionByInstructor(int id) {
         return sessionsRepository.findByInstructorId(id);
     }
+
+    public SessionsEntity save(SessionsEntity session) {
+        return sessionsRepository.save(session);
+    }
 }

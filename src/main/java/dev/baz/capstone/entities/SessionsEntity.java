@@ -1,11 +1,12 @@
 package dev.baz.capstone.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -25,16 +26,18 @@ public class SessionsEntity {
     private String sessionName;
 
     @Basic
-    @Column(name = "date", nullable = false)
-    private Date date;
+    @Column(name = "session_date", nullable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private LocalDate sessionDate;
 
     @Basic
-    @Column(name = "time", nullable = false)
-    private Time time;
+    @Column(name = "session_time", nullable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
+    private Time sessionTime;
 
     @Basic
-    @Column(name = "desc", nullable = true, length = -1)
-    private String desc;
+    @Column(name = "session_desc", nullable = true, length = -1)
+    private String sessionDesc;
 
     @ManyToOne
     @JoinColumn(name = "instructor_id", referencedColumnName = "instructor_id", nullable = false, insertable = false,
@@ -45,6 +48,17 @@ public class SessionsEntity {
     @OneToMany(mappedBy = "sessionsBySessionId")
     @JsonManagedReference
     private List<ParticipatesEntity> participatesBySessionId;
+
+    public SessionsEntity() {
+    }
+
+    public SessionsEntity(int instructorId, String sessionName, LocalDate sessionDate, Time time, String sessionDesc) {
+        this.instructorId = instructorId;
+        this.sessionName = sessionName;
+        this.sessionDate = sessionDate;
+        this.sessionTime = time;
+        this.sessionDesc = sessionDesc;
+    }
 
     public int getSessionId() {
         return sessionId;
@@ -70,28 +84,28 @@ public class SessionsEntity {
         this.sessionName = sessionName;
     }
 
-    public Date getDate() {
-        return date;
+    public LocalDate getSessionDate() {
+        return sessionDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setSessionDate(LocalDate date) {
+        this.sessionDate = date;
     }
 
-    public Time getTime() {
-        return time;
+    public Time getSessionTime() {
+        return sessionTime;
     }
 
-    public void setTime(Time time) {
-        this.time = time;
+    public void setSessionTime(Time time) {
+        this.sessionTime = time;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getSessionDesc() {
+        return sessionDesc;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setSessionDesc(String desc) {
+        this.sessionDesc = desc;
     }
 
     @Override
@@ -104,9 +118,9 @@ public class SessionsEntity {
         if (sessionId != that.sessionId) return false;
         if (instructorId != that.instructorId) return false;
         if (sessionName != null ? !sessionName.equals(that.sessionName) : that.sessionName != null) return false;
-        if (date != null ? !date.equals(that.date) : that.date != null) return false;
-        if (time != null ? !time.equals(that.time) : that.time != null) return false;
-        if (desc != null ? !desc.equals(that.desc) : that.desc != null) return false;
+        if (sessionDate != null ? !sessionDate.equals(that.sessionDate) : that.sessionDate != null) return false;
+        if (sessionTime != null ? !sessionTime.equals(that.sessionTime) : that.sessionTime != null) return false;
+        if (sessionDesc != null ? !sessionDesc.equals(that.sessionDesc) : that.sessionDesc != null) return false;
 
         return true;
     }
@@ -116,9 +130,9 @@ public class SessionsEntity {
         int result = sessionId;
         result = 31 * result + instructorId;
         result = 31 * result + (sessionName != null ? sessionName.hashCode() : 0);
-        result = 31 * result + (date != null ? date.hashCode() : 0);
-        result = 31 * result + (time != null ? time.hashCode() : 0);
-        result = 31 * result + (desc != null ? desc.hashCode() : 0);
+        result = 31 * result + (sessionDate != null ? sessionDate.hashCode() : 0);
+        result = 31 * result + (sessionTime != null ? sessionTime.hashCode() : 0);
+        result = 31 * result + (sessionDesc != null ? sessionDesc.hashCode() : 0);
         return result;
     }
 

@@ -1,10 +1,9 @@
 package dev.baz.capstone.controller;
 
+import dev.baz.capstone.entities.SessionsEntity;
 import dev.baz.capstone.service.SessionsService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class SessionsController {
@@ -23,6 +22,11 @@ public class SessionsController {
     @GetMapping("/sessions/instructor/{id}")
     public ResponseEntity<?> getSessionByInstructor(@PathVariable Integer id) {
         return ResponseEntity.ok(sessionsService.getSessionByInstructor(id));
+    }
+
+    @PostMapping("/sessions")
+    public ResponseEntity<?> saveSession(@RequestBody SessionsEntity session) {
+        return ResponseEntity.ok(sessionsService.save(session));
     }
 
 }
