@@ -1,7 +1,7 @@
 package dev.baz.capstone.entities;
 
 import javax.persistence.*;
-import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "instructors", schema = "capstone")
@@ -24,7 +24,7 @@ public class InstructorsEntity {
     private String lastName;
 
     @OneToMany(mappedBy = "instructorsByInstructorId")
-    private Collection<SessionsEntity> sessionsByInstructorId;
+    private List<SessionsEntity> sessionsByInstructorId;
 
     public int getInstructorId() {
         return instructorId;
@@ -82,11 +82,11 @@ public class InstructorsEntity {
         return result;
     }
 
-    public Collection<SessionsEntity> getSessionsByInstructorId() {
+    public List<SessionsEntity> getSessionsByInstructorId() {
         return sessionsByInstructorId;
     }
 
-    public void setSessionsByInstructorId(Collection<SessionsEntity> sessionsByInstructorId) {
+    public void setSessionsByInstructorId(List<SessionsEntity> sessionsByInstructorId) {
         this.sessionsByInstructorId = sessionsByInstructorId;
     }
 }

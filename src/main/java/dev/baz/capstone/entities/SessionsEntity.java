@@ -1,10 +1,12 @@
 package dev.baz.capstone.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
+import java.util.List;
 
 @Entity
 @Table(name = "sessions", schema = "capstone")
@@ -39,6 +41,10 @@ public class SessionsEntity {
             updatable = false)
     @JsonIgnore
     private InstructorsEntity instructorsByInstructorId;
+
+    @OneToMany(mappedBy = "sessionsBySessionId")
+    @JsonManagedReference
+    private List<ParticipatesEntity> participatesBySessionId;
 
     public int getSessionId() {
         return sessionId;

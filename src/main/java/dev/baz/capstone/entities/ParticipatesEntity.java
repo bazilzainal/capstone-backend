@@ -1,5 +1,7 @@
 package dev.baz.capstone.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -22,6 +24,7 @@ public class ParticipatesEntity {
 
     @ManyToOne
     @JoinColumn(name = "session_id", referencedColumnName = "session_id", nullable = false, insertable = false, updatable = false)
+    @JsonBackReference
     private SessionsEntity sessionsBySessionId;
 
     public int getStudentId() {
