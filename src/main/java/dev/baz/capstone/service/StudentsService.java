@@ -22,4 +22,8 @@ public class StudentsService {
     public List<StudentsEntity> getStudentsBySession(int id) {
         return studentsRepository.findStudentsEntitiesBySessionId(id);
     }
+
+    public StudentsEntity getStudentDetails(int id) {
+        return studentsRepository.findById(id).orElse(null);
+    }
 }

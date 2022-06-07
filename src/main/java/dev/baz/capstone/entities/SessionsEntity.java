@@ -46,7 +46,7 @@ public class SessionsEntity {
     private InstructorsEntity instructorsByInstructorId;
 
     @OneToMany(mappedBy = "sessionsBySessionId")
-    @JsonManagedReference
+    @JsonManagedReference(value="sessionsBySessionId")
     private List<ParticipatesEntity> participatesBySessionId;
 
     public SessionsEntity() {

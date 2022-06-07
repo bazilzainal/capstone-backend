@@ -20,11 +20,12 @@ public class ParticipatesEntity {
 
     @ManyToOne
     @JoinColumn(name = "student_id", referencedColumnName = "student_id", nullable = false, insertable = false, updatable = false)
+    @JsonBackReference(value = "studentsByStudentId")
     private StudentsEntity studentsByStudentId;
 
     @ManyToOne
     @JoinColumn(name = "session_id", referencedColumnName = "session_id", nullable = false, insertable = false, updatable = false)
-    @JsonBackReference
+    @JsonBackReference(value="sessionsBySessionId")
     private SessionsEntity sessionsBySessionId;
 
     public int getStudentId() {

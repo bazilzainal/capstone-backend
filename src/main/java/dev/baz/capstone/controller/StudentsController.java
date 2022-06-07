@@ -26,4 +26,9 @@ public class StudentsController {
     public ResponseEntity<?> getStudentsBySession(@PathVariable(value = "id") int id) {
         return ResponseEntity.ok(studentsService.getStudentsBySession(id));
     }
+
+    @GetMapping("/students/{id}")
+    public ResponseEntity<?> getStudentDetails(@PathVariable(value = "id") int id) {
+        return ResponseEntity.ok(studentsService.getStudentDetails(id));
+    }
 }

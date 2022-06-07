@@ -1,6 +1,9 @@
 package dev.baz.capstone.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "students", schema = "capstone")
@@ -21,6 +24,10 @@ public class StudentsEntity {
     @Basic
     @Column(name = "last_name", nullable = false, length = 100)
     private String lastName;
+
+    @OneToMany(mappedBy = "studentsByStudentId")
+    @JsonManagedReference(value = "studentsByStudentId")
+    private List<ParticipatesEntity> participatesByStudentId;
 
     public int getStudentId() {
         return studentId;
@@ -77,4 +84,5 @@ public class StudentsEntity {
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
         return result;
     }
+
 }
