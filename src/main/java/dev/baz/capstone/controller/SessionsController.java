@@ -38,6 +38,10 @@ public class SessionsController {
         return ResponseEntity.ok(sessionsService.getSessionsByDate(date));
     }
 
+    @GetMapping("/sessions/student/{id}")
+    public ResponseEntity<?> getAllStudentSessionDetails(@PathVariable Integer id) {
+        return ResponseEntity.ok(sessionsService.getAllStudentSessionDetails(id));
+    }
 
     @PostMapping("/sessions")
     public ResponseEntity<?> saveSession(@RequestBody SessionsEntity session) {

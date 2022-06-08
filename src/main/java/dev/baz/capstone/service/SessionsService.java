@@ -1,5 +1,6 @@
 package dev.baz.capstone.service;
 
+import dev.baz.capstone.dto.SessionDTO;
 import dev.baz.capstone.entities.SessionsEntity;
 import dev.baz.capstone.repository.SessionsRepository;
 import org.springframework.stereotype.Service;
@@ -34,6 +35,10 @@ public class SessionsService {
 
     public List<SessionsEntity> getSessionsByDate(LocalDate date) {
         return sessionsRepository.findByDate(date);
+    }
+
+    public List<SessionDTO> getAllStudentSessionDetails(int studentId) {
+        return sessionsRepository.getAllStudentSessionDetails(studentId);
     }
 
 }
