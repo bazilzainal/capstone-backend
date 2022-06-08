@@ -9,12 +9,10 @@ import java.io.Serializable;
 public class ParticipatesEntityPK implements Serializable {
     @Column(name = "student_id", nullable = false)
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int studentId;
 
     @Column(name = "session_id", nullable = false)
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int sessionId;
 
     public int getStudentId() {

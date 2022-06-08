@@ -8,12 +8,10 @@ import javax.persistence.*;
 @Table(name = "participates", schema = "capstone")
 @IdClass(ParticipatesEntityPK.class)
 public class ParticipatesEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "student_id", nullable = false)
     private int studentId;
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "session_id", nullable = false)
     private int sessionId;
