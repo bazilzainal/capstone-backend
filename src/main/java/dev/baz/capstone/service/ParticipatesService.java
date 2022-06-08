@@ -17,4 +17,7 @@ public class ParticipatesService {
         return participatesRepository.save(participates);
     }
 
+    public ParticipatesEntity getParticipatesByStudentIdAndSessionId(int studentId, int sessionId) {
+        return participatesRepository.findByStudentIdAndSessionId(studentId, sessionId);
+    }
 }
