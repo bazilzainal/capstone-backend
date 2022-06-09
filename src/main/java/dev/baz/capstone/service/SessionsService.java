@@ -33,12 +33,12 @@ public class SessionsService {
         return sessionsRepository.findById(id).orElse(null);
     }
 
-    public List<SessionsEntity> getSessionsByDate(LocalDate date) {
-        return sessionsRepository.findByDate(date);
+    public List<SessionDTO> getSessionsByDate(LocalDate date) {
+        return sessionsRepository.getSessionDetailsByDate(date);
     }
 
     public List<SessionDTO> getAllStudentSessionDetails(int studentId) {
-        return sessionsRepository.getAllStudentSessionDetails(studentId);
+        return sessionsRepository.getSessionDetailsByStudent(studentId);
     }
 
 }

@@ -16,12 +16,18 @@ public interface SessionsRepository extends JpaRepository<SessionsEntity, Intege
 
     SessionsEntity save(SessionsEntity session);
 
-    @Query("SELECT s FROM SessionsEntity s WHERE s.sessionDate = :date")
+    @Query("SELECT s FROM SessionsEntity s WHERE s.sessionDate = :date ORDER BY s.sessionTime ASC ")
     List<SessionsEntity> findByDate(LocalDate date);
 
     @Query("SELECT new dev.baz.capstone.dto.SessionDTO(s.sessionId, i.instructorId, i.firstName, i.lastName, s" +
             ".sessionName, s.sessionDesc,s.sessionDate,s.sessionTime) FROM InstructorsEntity i JOIN SessionsEntity s " +
-            "ON i.instructorId = s.instructorId LEFT JOIN ParticipatesEntity p ON p.sessionId = s.sessionId WHERE p.studentId = :studentId")
-    List<SessionDTO> getAllStudentSessionDetails(int studentId);
+            "ON i.instructorId = s.instructorId LEFT JOIN ParticipatesEntity p ON p.sessionId = s.sessionId WHERE p" +
+            ".studentId = :studentId ORDER BY s.sessionDate ASC, s.sessionTime ASC")
+    List<SessionDTO> getSessionDetailsByStudent(int studentId);
+
+    @Query("SELECT new dev.baz.capstone.dto.SessionDTO(s.sessionId, i.instructorId, i.firstName, i.lastName, s" +
+            ".sessionName, s.sessionDesc,s.sessionDate,s.sessionTime) FROM SessionsEntity s JOIN InstructorsEntity i ON " +
+            "s.instructorId = i.instructorId WHERE s.sessionDate = :date ORDER BY s.sessionTime ASC")
+    List<SessionDTO> getSessionDetailsByDate(LocalDate date);
 
 }
