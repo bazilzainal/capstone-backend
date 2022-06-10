@@ -19,10 +19,11 @@ public interface SessionsRepository extends JpaRepository<SessionsEntity, Intege
     @Query("SELECT s FROM SessionsEntity s WHERE s.sessionDate = :date ORDER BY s.sessionTime ASC ")
     List<SessionsEntity> findByDate(LocalDate date);
 
+    // Only return sessions after the current date
     @Query("SELECT new dev.baz.capstone.dto.SessionDTO(s.sessionId, i.instructorId, i.firstName, i.lastName, s" +
             ".sessionName, s.sessionDesc,s.sessionDate,s.sessionTime) FROM InstructorsEntity i JOIN SessionsEntity s " +
             "ON i.instructorId = s.instructorId LEFT JOIN ParticipatesEntity p ON p.sessionId = s.sessionId WHERE p" +
-            ".studentId = :studentId AND s.sessionDate >= CURRENT_DATE AND s.sessionTime >= CURRENT_TIME ORDER BY s.sessionDate " +
+            ".studentId = :studentId AND s.sessionDate >= CURRENT_DATE ORDER BY s.sessionDate " +
             "ASC, s.sessionTime ASC")
     List<SessionDTO> getSessionDetailsByStudent(int studentId);
 
