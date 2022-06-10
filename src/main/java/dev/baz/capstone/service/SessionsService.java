@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * This class is the service layer for the sessions. It uses JPARepository to access the database.
+ */
 @Service
 public class SessionsService {
 
@@ -28,6 +31,15 @@ public class SessionsService {
         return sessionsRepository.findByInstructorId(id);
     }
 
+    /**
+     * This method saves a session to the database.
+     * It also throws an exception if a session of the same date and time is already in the database.
+     * This is because no overlapping sessions are allowed.
+     *
+     * @param session The session to be added to the database.
+     *
+     * @return The session that was added to the database.
+     */
     public SessionsEntity save(SessionsEntity session) {
         if (!sessionsRepository.findByDateAndTime(session.getSessionDate(), session.getSessionTime()).isEmpty()) {
             throw new SessionDuplicateException();

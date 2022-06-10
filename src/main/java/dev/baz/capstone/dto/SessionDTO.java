@@ -4,6 +4,10 @@ import java.sql.Time;
 import java.time.LocalDate;
 import java.util.Date;
 
+/**
+ * This DTO is used to represent a session.
+ * It helps to parse the session data from the database to the frontend.
+ */
 public class SessionDTO {
     private int sessionId;
 

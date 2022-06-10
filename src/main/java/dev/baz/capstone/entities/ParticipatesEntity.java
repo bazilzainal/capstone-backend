@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 
+/**
+ * This class is the entity for student participation.
+ */
 @Entity
 @Table(name = "participates", schema = "capstone")
 @IdClass(ParticipatesEntityPK.class)

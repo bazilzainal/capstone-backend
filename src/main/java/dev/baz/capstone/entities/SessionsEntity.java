@@ -9,6 +9,9 @@ import java.sql.Time;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * This class is the entity for session.
+ */
 @Entity
 @Table(name = "sessions", schema = "capstone")
 public class SessionsEntity {

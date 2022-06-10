@@ -8,8 +8,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 
+/**
+ * This class is the controller for sessions.
+ */
 @RestController
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "*", maxAge = 3600) // Only for the purposes of this capstone project, origins is set to any
 public class SessionsController {
 
     private final SessionsService sessionsService;

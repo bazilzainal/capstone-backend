@@ -9,6 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+/**
+ * This class is used to handle exceptions thrown by the controllers.
+ */
 @RestControllerAdvice
 public class ExceptionControllerAdvice {
 

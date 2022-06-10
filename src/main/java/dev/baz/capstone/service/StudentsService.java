@@ -6,6 +6,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * This class is the service layer for the students. It uses JPARepository to access the database.
+ */
 @Service
 public class StudentsService {
 

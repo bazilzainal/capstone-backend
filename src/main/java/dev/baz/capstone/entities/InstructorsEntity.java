@@ -3,6 +3,9 @@ package dev.baz.capstone.entities;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * This is the entity class for the instructors table.
+ */
 @Entity
 @Table(name = "instructors", schema = "capstone")
 public class InstructorsEntity {

@@ -5,6 +5,9 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * This class is the entity for students.
+ */
 @Entity
 @Table(name = "students", schema = "capstone")
 public class StudentsEntity {

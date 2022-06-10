@@ -4,6 +4,9 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 import java.io.Serializable;
 
+/**
+ * This class is the IDClass for the ParticipatesEntity.
+ */
 public class ParticipatesEntityPK implements Serializable {
     @Column(name = "student_id", nullable = false)
     @Id

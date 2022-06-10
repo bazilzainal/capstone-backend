@@ -1,5 +1,8 @@
 package dev.baz.capstone.dto;
 
+/**
+ * This is a simple DTO that contains the error details.
+ */
 public class ErrorDetails {
 
   private String message;
