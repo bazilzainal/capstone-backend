@@ -2,6 +2,8 @@ package dev.baz.capstone.service;
 
 import dev.baz.capstone.dto.SessionDTO;
 import dev.baz.capstone.entities.SessionsEntity;
+import dev.baz.capstone.exception.NoSessionForDateException;
+import dev.baz.capstone.exception.NoSessionForIdException;
 import dev.baz.capstone.repository.SessionsRepository;
 import org.springframework.stereotype.Service;
 
@@ -30,10 +32,20 @@ public class SessionsService {
     }
 
     public SessionsEntity getSessionDetails(Integer id) {
-        return sessionsRepository.findById(id).orElse(null);
+        if (sessionsRepository.findById(id).isPresent()) {
+            return sessionsRepository.findById(id).get();
+        } else {
+            throw new NoSessionForIdException();
+        }
     }
 
     public List<SessionDTO> getSessionsByDate(LocalDate date) {
+        List<SessionDTO> sessions = sessionsRepository.getSessionDetailsByDate(date);
+
+        if (sessions.isEmpty()) {
+            throw new NoSessionForDateException();
+        }
+
         return sessionsRepository.getSessionDetailsByDate(date);
     }
 
