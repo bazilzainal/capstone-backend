@@ -4,6 +4,7 @@ import dev.baz.capstone.dto.ErrorDetails;
 import dev.baz.capstone.exception.AlreadyRegisteredException;
 import dev.baz.capstone.exception.NoSessionForDateException;
 import dev.baz.capstone.exception.NoSessionForIdException;
+import dev.baz.capstone.exception.SessionDuplicateException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -36,5 +37,14 @@ public class ExceptionControllerAdvice {
     return ResponseEntity
         .badRequest()
         .body(errorDetails);
+  }
+
+  @ExceptionHandler(SessionDuplicateException.class)
+  public ResponseEntity<ErrorDetails> exceptionSessionAlreadyExistsHandler() {
+    ErrorDetails errorDetails = new ErrorDetails();
+    errorDetails.setMessage("A session already exists for this date and time.");
+    return ResponseEntity
+            .badRequest()
+            .body(errorDetails);
   }
 }

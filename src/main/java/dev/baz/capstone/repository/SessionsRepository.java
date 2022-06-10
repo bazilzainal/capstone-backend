@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Time;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -18,6 +19,10 @@ public interface SessionsRepository extends JpaRepository<SessionsEntity, Intege
 
     @Query("SELECT s FROM SessionsEntity s WHERE s.sessionDate = :date ORDER BY s.sessionTime ASC ")
     List<SessionsEntity> findByDate(LocalDate date);
+
+    @Query("SELECT s FROM SessionsEntity s WHERE s.sessionDate = :date AND s.sessionTime = :time ORDER BY s" +
+            ".sessionTime ASC ")
+    List<SessionsEntity> findByDateAndTime(LocalDate date, Time time);
 
     // Only return sessions after the current date
     @Query("SELECT new dev.baz.capstone.dto.SessionDTO(s.sessionId, i.instructorId, i.firstName, i.lastName, s" +

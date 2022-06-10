@@ -4,6 +4,7 @@ import dev.baz.capstone.dto.SessionDTO;
 import dev.baz.capstone.entities.SessionsEntity;
 import dev.baz.capstone.exception.NoSessionForDateException;
 import dev.baz.capstone.exception.NoSessionForIdException;
+import dev.baz.capstone.exception.SessionDuplicateException;
 import dev.baz.capstone.repository.SessionsRepository;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +29,10 @@ public class SessionsService {
     }
 
     public SessionsEntity save(SessionsEntity session) {
+        if (!sessionsRepository.findByDateAndTime(session.getSessionDate(), session.getSessionTime()).isEmpty()) {
+            throw new SessionDuplicateException();
+        }
+
         return sessionsRepository.save(session);
     }
 
