@@ -46,7 +46,7 @@ public class SessionsService {
             throw new NoSessionForDateException();
         }
 
-        return sessionsRepository.getSessionDetailsByDate(date);
+        return sessions;
     }
 
     public List<SessionDTO> getAllStudentSessionDetails(int studentId) {

@@ -22,7 +22,8 @@ public interface SessionsRepository extends JpaRepository<SessionsEntity, Intege
     @Query("SELECT new dev.baz.capstone.dto.SessionDTO(s.sessionId, i.instructorId, i.firstName, i.lastName, s" +
             ".sessionName, s.sessionDesc,s.sessionDate,s.sessionTime) FROM InstructorsEntity i JOIN SessionsEntity s " +
             "ON i.instructorId = s.instructorId LEFT JOIN ParticipatesEntity p ON p.sessionId = s.sessionId WHERE p" +
-            ".studentId = :studentId ORDER BY s.sessionDate ASC, s.sessionTime ASC")
+            ".studentId = :studentId AND s.sessionDate >= CURRENT_DATE AND s.sessionTime >= CURRENT_TIME ORDER BY s.sessionDate " +
+            "ASC, s.sessionTime ASC")
     List<SessionDTO> getSessionDetailsByStudent(int studentId);
 
     @Query("SELECT new dev.baz.capstone.dto.SessionDTO(s.sessionId, i.instructorId, i.firstName, i.lastName, s" +
