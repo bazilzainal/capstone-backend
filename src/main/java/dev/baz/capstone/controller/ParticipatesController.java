@@ -22,12 +22,6 @@ public class ParticipatesController {
     @PostMapping("/participates")
     public ResponseEntity<?> saveParticipates(@RequestBody ParticipatesEntity participates) {
 
-        // Check if entry exists in the participates table
-        ParticipatesEntity existingParticipates = participatesService.getParticipatesByStudentIdAndSessionId(participates.getStudentId(), participates.getSessionId());
-
-        if (existingParticipates != null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Student already registered for this session");
-        }
         return ResponseEntity.ok(participatesService.save(participates));
     }
 
